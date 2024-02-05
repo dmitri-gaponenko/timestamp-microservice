@@ -6,12 +6,12 @@ app.get('/api/:date?', (req, res) => {
   const validDate = getValidDate(req.params.date);
 
   if (!validDate) {
-    return res.json({"error": "Invalid Date"});
+    return res.json({error: "Invalid Date"});
   }
 
   const result = {
-    "unix": validDate.getTime(),
-    "utc": validDate.toUTCString()
+    unix: validDate.getTime(),
+    utc: validDate.toUTCString()
   };
 
   return res.json(result);
