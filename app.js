@@ -22,8 +22,8 @@ app.get('/api/:date?', (req, res) => {
 const getValidDate = (dateString) => {
   if (!dateString) {
     return new Date();
-  } else if (Number(dateString)) {
-    const date = new Date(Number(dateString));
+  } else {
+    const date = new Date(Number(dateString) || dateString);
     const timestamp = date.getTime();
 
     if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
@@ -31,21 +31,6 @@ const getValidDate = (dateString) => {
     }
 
     return date;
-  } else {
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-
-    if (dateString.match(regex) === null) {
-      return null;
-    }
-
-    const date = new Date(dateString);
-    const timestamp = date.getTime();
-
-    if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
-      return null;
-    }
-
-    return date.toISOString().startsWith(dateString) ? date : null;
   }
 };
 
