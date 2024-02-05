@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8081;
+const cors = require('cors');
+app.use(cors({optionsSuccessStatus: 200}));
 
 app.get('/api/:date?', (req, res) => {
   const validDate = getValidDate(req.params.date);
